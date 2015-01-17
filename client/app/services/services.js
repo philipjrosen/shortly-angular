@@ -5,6 +5,10 @@ angular.module('shortly.services', [])
   factory.getLinks = function() {
     return $http.get('/api/links');
   };
+
+  factory.addLink = function(link) {
+    return $http.post('/api/links', JSON.stringify({url: link}));
+  }
   return factory;
 })
 .factory('Auth', function ($http, $location, $window) {
