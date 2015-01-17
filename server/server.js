@@ -5,6 +5,12 @@ var app = express();
 
 mongoose.connect('mongodb://localhost/shortly'); // connect to mongo database named shortly
 
+mongoose.connection
+  .on('error', console.error.bind(console, 'connection error:'))
+  .once('open', function(){
+    console.log("connected to database");
+  });
+
 // configure our server with all the middleware and and routing
 require('./config/middleware.js')(app, express);
 
